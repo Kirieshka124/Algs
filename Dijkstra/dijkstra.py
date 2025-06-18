@@ -185,15 +185,20 @@ if __name__ == "__main__":
             # Используем первую точку ребра для старта и вторую точку ребра для финиша.
             start_node = edges[start_index][0]
             end_node = edges[end_index][1]
+            start_time = time.time()
+
 
 
             graph = build_graph(edges)
+            start_time = time.time()
             path, distance, street_names = dijkstra(graph, start_node, end_node, edges)
+            duration = time.time() - start_time
 
             if not path:
                 print("Путь не найден")
             else:
                 print(f"Найден путь длиной {distance:.2f} км")
+                print(f"Время выполнения: {duration:.3f} секунд")
                 print("Улицы на пути:", ", ".join(filter(None, street_names)))
 
 
